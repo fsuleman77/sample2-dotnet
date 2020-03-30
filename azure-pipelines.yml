@@ -13,5 +13,13 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: prisma-cloud-compute-scan@1
+  inputs:
+    scanType: 'images'
+    twistlockService: 'PC-Console-Scanner'
+    vulnerabilityThreshold: 'low'
+    onlyFixed: false
+    gracePeriod: '0'
+    complianceThreshold: 'low'
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
